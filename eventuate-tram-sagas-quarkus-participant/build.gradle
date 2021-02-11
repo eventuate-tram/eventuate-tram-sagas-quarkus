@@ -1,0 +1,15 @@
+plugins {
+    id "io.quarkus" version "${quarkusVersion}"
+    id 'org.kordamp.gradle.jandex' version '0.6.0'
+}
+
+apply plugin: PublicModulePlugin
+
+dependencies {
+    compile project(":eventuate-tram-sagas-quarkus-common")
+
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-participant:$eventuateTramSagasVersion"
+    compile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}

@@ -1,0 +1,34 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id "io.quarkus" version "${quarkusVersion}"
+    id 'org.kordamp.gradle.jandex' version '0.6.0'
+}
+
+apply plugin: PublicModulePlugin
+
+dependencies {
+    testCompile project(":orders-and-customers-quarkus")
+
+    testCompile "io.eventuate.common:eventuate-common-quarkus-jdbc-test-configuration:$eventuateCommonQuarkusVersion"
+    testCompile 'javax.persistence:javax.persistence-api:2.2'
+
+    testCompile 'io.quarkus:quarkus-hibernate-orm'
+    testCompile 'io.quarkus:quarkus-jdbc-mysql'
+    testCompile 'io.quarkus:quarkus-jdbc-mssql'
+    testCompile 'io.quarkus:quarkus-jdbc-postgresql'
+    testCompile 'io.quarkus:quarkus-agroal'
+
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processTestResources {
+    outputs.upToDateWhen { false }
+    filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]
+}
+
+

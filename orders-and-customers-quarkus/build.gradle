@@ -1,0 +1,34 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id "io.quarkus" version "${quarkusVersion}"
+    id 'org.kordamp.gradle.jandex' version '0.6.0'
+}
+
+apply plugin: PublicModulePlugin
+
+dependencies {
+    compile project(":eventuate-tram-sagas-quarkus-orchestration-simple-dsl")
+    compile project(":eventuate-tram-sagas-quarkus-participant")
+
+    compile "io.eventuate.tram.sagas:orders-and-customers:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-testing-support:$eventuateTramSagasVersion"
+    compile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+    compile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-quarkus-jdbc-kafka:$eventuateTramQuarkusVersion"
+
+    compile 'io.quarkus:quarkus-hibernate-orm'
+    compile 'io.quarkus:quarkus-jdbc-mysql'
+    compile 'io.quarkus:quarkus-jdbc-mssql'
+    compile 'io.quarkus:quarkus-jdbc-postgresql'
+    compile 'io.quarkus:quarkus-agroal'
+    compile 'io.quarkus:quarkus-junit5'
+    compile 'javax.persistence:javax.persistence-api:2.2'
+
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}
+
+processResources {
+    outputs.upToDateWhen { false }
+    filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]
+}
