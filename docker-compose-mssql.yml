@@ -23,7 +23,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 60000
 
   mssql:
-    image: eventuateio/eventuate-tram-sagas-mssql:test #$EVENTUATE_SAGA_VERSION
+    image: eventuateio/eventuate-tram-sagas-mssql:$EVENTUATE_SAGA_VERSION
     ports:
       - 1433:1433
     environment:
