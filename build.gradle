@@ -73,6 +73,11 @@ dockerCompose {
         useComposeFiles = ["docker-compose-mysql.yml"]
     }
 
+    mssqlAll {
+        projectName = null
+        useComposeFiles = ["docker-compose-mssql.yml"]
+    }
+
     postgresAll {
         projectName = null
         useComposeFiles = ["docker-compose-postgres.yml"]

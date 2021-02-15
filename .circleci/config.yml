@@ -45,11 +45,15 @@ workflows:
           name: build-and-test-mysql
           script: ./build-and-test-all-mysql.sh
       - build-and-test/build-and-test:
+          name: build-and-test-mssql
+          script: ./build-and-test-all-mssql.sh
+      - build-and-test/build-and-test:
           name: build-and-test-postgres
           script: ./build-and-test-all-postgres.sh
       - build-and-test/build-and-test:
           name: deploy-artifacts
           requires:
             - build-and-test-mysql
+            - build-and-test-mssql
             - build-and-test-postgres
-          script: ./scripts/deploy-artifacts.sh
+          script: ./deploy-artifacts.sh
