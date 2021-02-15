@@ -36,6 +36,10 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
   @Inject
   SagaEventsConsumer sagaEventsConsumer;
 
+  protected OrderService getOrderService() {
+    return orderService;
+  }
+
   @Test
   public void shouldApproveOrder() {
     Money creditLimit = new Money("200.00");
