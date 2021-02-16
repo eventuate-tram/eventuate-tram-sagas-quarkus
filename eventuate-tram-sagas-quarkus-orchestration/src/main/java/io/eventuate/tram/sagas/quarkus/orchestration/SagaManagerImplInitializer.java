@@ -16,7 +16,7 @@ public class SagaManagerImplInitializer {
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
   @Inject
-  Instance<SagaManager> sagaManagers;
+  Instance<SagaManager<?>> sagaManagers;
 
   @PostConstruct
   public void init() {
