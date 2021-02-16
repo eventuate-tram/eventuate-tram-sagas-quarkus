@@ -15,6 +15,10 @@ orbs:
               name: Look at permissions
               command: ls -lt ./.circleci/save-containers-and-tests.sh
               when: always
+          - run:
+              name: Save test results debug
+              command: ./.circleci/save-containers-and-tests.sh
+              when: always
           - restore_cache:
               keys:
                 - eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}

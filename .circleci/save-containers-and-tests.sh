@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash -ex
 
 mkdir -p ~/junit ~/container-logs
 docker ps -a > ~/container-logs/containers.txt
