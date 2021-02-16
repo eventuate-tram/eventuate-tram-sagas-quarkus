@@ -1,0 +1,20 @@
+plugins {
+    id "io.quarkus" version "${quarkusVersion}"
+    id 'org.kordamp.gradle.jandex' version '0.6.0'
+}
+
+apply plugin: PublicModulePlugin
+
+dependencies {
+    compile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-common:$eventuateTramSagasVersion"
+
+    testCompile 'io.quarkus:quarkus-junit5'
+    testCompile project(":eventuate-tram-sagas-quarkus-in-memory")
+
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

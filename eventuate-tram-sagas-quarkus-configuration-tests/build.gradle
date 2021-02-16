@@ -1,0 +1,44 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id "io.quarkus" version "${quarkusVersion}"
+    id 'org.kordamp.gradle.jandex' version '0.6.0'
+}
+
+apply plugin: PublicModulePlugin
+
+dependencies {
+    testCompile project(":eventuate-tram-sagas-quarkus-common")
+
+    testCompile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+    testCompile "io.eventuate.common:eventuate-common-quarkus-jdbc-test-configuration:$eventuateCommonQuarkusVersion"
+
+    testCompile project(":eventuate-tram-sagas-quarkus-orchestration-simple-dsl")
+    testCompile project(":eventuate-tram-sagas-quarkus-participant")
+    testCompile project(":eventuate-tram-sagas-quarkus-orchestration")
+
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-producer-jdbc:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-jdbc:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-messaging:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-kafka:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
+
+    testCompile 'io.quarkus:quarkus-jdbc-mysql'
+    testCompile 'io.quarkus:quarkus-jdbc-mssql'
+    testCompile 'io.quarkus:quarkus-jdbc-postgresql'
+    testCompile 'io.quarkus:quarkus-agroal'
+
+    testCompile 'io.quarkus:quarkus-junit5'
+
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processTestResources {
+    outputs.upToDateWhen { false }
+    filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]
+}
