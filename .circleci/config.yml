@@ -11,6 +11,10 @@ orbs:
         working_directory: ~/eventuate-tram-sagas-quarkus
         steps:
           - checkout
+          - run:
+              name: Look at permissions
+              command: ls -lt ./.circleci/save-containers-and-tests.sh
+              when: always
           - restore_cache:
               keys:
                 - eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
@@ -27,10 +31,6 @@ orbs:
                 - ~/.gradle
               key: eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
           - run: <<parameters.script>>
-          - run:
-              name: Look at permissions
-              command: ls -lt ./.circleci/save-containers-and-tests.sh
-              when: always
           - run:
               name: Save test results
               command: ./.circleci/save-containers-and-tests.sh
