@@ -28,6 +28,10 @@ orbs:
               key: eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
           - run: <<parameters.script>>
           - run:
+              name: Look at permissions
+              command: ls -lt ./.circleci/save-containers-and-tests.sh
+              when: always
+          - run:
               name: Save test results
               command: ./.circleci/save-containers-and-tests.sh
               when: always
