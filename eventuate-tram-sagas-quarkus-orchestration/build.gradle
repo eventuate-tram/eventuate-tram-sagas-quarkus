@@ -13,5 +13,13 @@ dependencies {
     compile "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
     compile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
 
+    compile "io.quarkus:quarkus-junit5"
+    compile 'org.mockito:mockito-core:3.7.7'
+
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+}
+
+
+test {
+    useJUnitPlatform()
 }
