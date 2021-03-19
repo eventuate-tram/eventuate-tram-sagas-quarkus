@@ -29,13 +29,14 @@ allprojects {
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }
 
+    if (!project.name.endsWith("-bom")) {
+      dependencies {
+          compile 'io.quarkus:quarkus-core'
+          compile 'io.quarkus.arc:arc'
+          compile 'io.quarkus:quarkus-arc-deployment'
 
-    dependencies {
-        compile 'io.quarkus:quarkus-core'
-        compile 'io.quarkus.arc:arc'
-        compile 'io.quarkus:quarkus-arc-deployment'
-
-        implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+          implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
+      }
     }
 }
 
