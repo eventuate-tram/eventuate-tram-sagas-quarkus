@@ -1,0 +1,22 @@
+= Eventuate Tram Sagas for Quarkus
+
+This is the Quarkus version of https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Sagas], which is an http://microservices.io/patterns/data/saga.html[orchestration-based saga] framework for Java microservices that use JDBC/JPA.
+It's built on top of https://github.com/eventuate-tram/eventuate-tram-core-quarkus[Eventuate Tram for Quarkus].
+
+== Latest version
+
+[cols="a,a"]
+|===
+| Eventuate Tram for Quarkus
+| image::https://img.shields.io/maven-central/v/io.eventuate.tram.sagas/eventuate-tram-sagas-quarkus-bom[link="https://search.maven.org/search?q=io.eventuate.tram.sagas"]
+|===
+
+== Example applications
+
+There are the following example applications:
+
+* https://github.com/eventuate-examples/eventuate-tram-sagas-quarkus-examples-customers-and-orders[Eventuate Tram Sagas Customers and Orders] - demonstrates how to maintain data consistency in an Quarkus, JPA-based microservice architecture using http://microservices.io/patterns/data/saga.html[orchestration-based sagas].
+
+== Getting started
+
+Please see the https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram-sagas.html#getting-started-tram-sagas[getting started guide].
