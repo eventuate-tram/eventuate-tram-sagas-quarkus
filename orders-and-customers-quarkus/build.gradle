@@ -27,6 +27,10 @@ dependencies {
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
+configurations.compile {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+}
+
 processResources {
     outputs.upToDateWhen { false }
     filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]

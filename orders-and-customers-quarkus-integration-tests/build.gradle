@@ -1,10 +1,10 @@
-import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id "io.quarkus" version "${quarkusVersion}"
     id 'org.kordamp.gradle.jandex' version '0.6.0'
 }
 
+apply plugin: SetEventuateDatabasePlugin
 
 dependencies {
     testCompile project(":orders-and-customers-quarkus")
@@ -24,10 +24,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-processTestResources {
-    outputs.upToDateWhen { false }
-    filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]
-}
-
 

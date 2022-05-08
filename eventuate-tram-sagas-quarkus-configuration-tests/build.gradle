@@ -5,6 +5,7 @@ plugins {
     id 'org.kordamp.gradle.jandex' version '0.6.0'
 }
 
+apply plugin: SetEventuateDatabasePlugin
 
 dependencies {
     testCompile project(":eventuate-tram-sagas-quarkus-common")
@@ -22,6 +23,7 @@ dependencies {
     testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-messaging:$eventuateTramQuarkusVersion"
     testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-kafka:$eventuateTramQuarkusVersion"
     testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
 
     testCompile 'io.quarkus:quarkus-jdbc-mysql'
     testCompile 'io.quarkus:quarkus-jdbc-mssql'
@@ -35,9 +37,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-processTestResources {
-    outputs.upToDateWhen { false }
-    filter ReplaceTokens, tokens: ["EVENTUATEDATABASE": System.env.EVENTUATEDATABASE ?: "mysql"]
 }

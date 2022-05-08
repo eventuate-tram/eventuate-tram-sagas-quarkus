@@ -68,6 +68,7 @@ dockerCompose {
     environment.put "EVENTUATE_COMMON_VERSION", eventuateCommonImageVersion
     environment.put "EVENTUATE_CDC_VERSION", eventuateCdcImageVersion
     environment.put "EVENTUATE_SAGA_VERSION", eventuateTramSagasImageVersion
+    environment.put "EVENTUATE_MESSAGING_KAFKA_IMAGE_VERSION", eventuateMessagingKafkaImageVersion
 
     mysqlAll {
         projectName = null

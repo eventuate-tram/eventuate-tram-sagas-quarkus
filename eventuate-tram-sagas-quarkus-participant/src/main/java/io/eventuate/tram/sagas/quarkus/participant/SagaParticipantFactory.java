@@ -1,5 +1,6 @@
 package io.eventuate.tram.sagas.quarkus.participant;
 
+import io.eventuate.tram.commands.common.CommandNameMapping;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
 import io.eventuate.tram.messaging.producer.MessageProducer;
 import io.eventuate.tram.sagas.common.SagaLockManager;
@@ -13,7 +14,7 @@ public class SagaParticipantFactory {
   @Singleton
   public SagaCommandDispatcherFactory sagaCommandDispatcherFactory(Instance<MessageConsumer> messageConsumer,
                                                                    Instance<MessageProducer> messageProducer,
-                                                                   SagaLockManager sagaLockManager) {
-    return new SagaCommandDispatcherFactory(messageConsumer.get(), messageProducer.get(), sagaLockManager);
+                                                                   SagaLockManager sagaLockManager, CommandNameMapping commandNameMapping) {
+    return new SagaCommandDispatcherFactory(messageConsumer.get(), messageProducer.get(), sagaLockManager, commandNameMapping);
   }
 }
