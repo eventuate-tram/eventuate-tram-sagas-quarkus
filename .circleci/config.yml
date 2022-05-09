@@ -11,6 +11,9 @@ orbs:
           script:
             description: the script to execute
             type: string
+          use_cache:
+            type: boolean
+            default: true
         machine: true
         working_directory: ~/eventuate-tram-sagas-quarkus
         steps:
@@ -27,7 +30,7 @@ orbs:
               keys:
                 - eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
                 - eventuate-tram-sagas-quarkus-
-              when: << pipeline.parameters.use_cache >>
+              when: << parameters.use_cache >>
           - run:
               command: |
                 ./.circleci/upgrade-docker-compose.sh
@@ -72,3 +75,4 @@ workflows:
             - build-and-test-mssql
             - build-and-test-postgres
           script: ./deploy-artifacts.sh
+          use_cache: << pipeline.parameters.use_cache >>
