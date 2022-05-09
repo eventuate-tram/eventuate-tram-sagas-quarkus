@@ -1,4 +1,8 @@
 version: 2.1
+parameters:
+  use_cache:
+    type: boolean
+    default: true
 orbs:
   build-and-test:
     jobs:
@@ -23,6 +27,7 @@ orbs:
               keys:
                 - eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
                 - eventuate-tram-sagas-quarkus-
+              when: << pipeline.parameters.use_cache >>
           - run:
               command: |
                 ./.circleci/upgrade-docker-compose.sh
