@@ -1,72 +1,20 @@
 version: 2.1
-parameters:
-  use_cache:
-    type: boolean
-    default: true
 orbs:
-  build-and-test:
-    jobs:
-      build-and-test:
-        parameters:
-          script:
-            description: the script to execute
-            type: string
-          use_cache:
-            type: boolean
-            default: true
-        machine: true
-        working_directory: ~/eventuate-tram-sagas-quarkus
-        steps:
-          - checkout
-          - run:
-              name: Look at permissions
-              command: ls -lt ./.circleci/save-containers-and-tests.sh
-              when: always
-          - run:
-              name: Save test results debug
-              command: ./.circleci/save-containers-and-tests.sh
-              when: always
-          - restore_cache:
-              keys:
-                - eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-                - eventuate-tram-sagas-quarkus-
-              when: << parameters.use_cache >>
-          - run:
-              command: |
-                ./.circleci/upgrade-docker-compose.sh
-          - run:
-              command: |
-                . ./.circleci/setenv-circle-ci.sh
-                ./gradlew testClasses aggregateJavaDocs
-          - save_cache:
-              paths:
-                - ~/.gradle
-              key: eventuate-tram-sagas-quarkus-{{ checksum "gradle.properties" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-          - run: <<parameters.script>>
-          - run:
-              name: Save test results
-              command: ./.circleci/save-containers-and-tests.sh
-              when: always
-          - store_test_results:
-              path: ~/junit
-          - store_artifacts:
-              path: ~/junit
-          - store_artifacts:
-              path: ~/container-logs
+  eventuate-gradle-build-and-test: "eventuate_io/eventuate-gradle-build-and-test@0.1.0"
 workflows:
   version: 2.1
   build-test-and-deploy:
     jobs:
-      - build-and-test/build-and-test:
+      - eventuate-gradle-build-and-test/build-and-test:
           name: build-and-test-mysql
           script: ./build-and-test-all-mysql.sh
-      - build-and-test/build-and-test:
+      - eventuate-gradle-build-and-test/build-and-test:
           name: build-and-test-mssql
           script: ./build-and-test-all-mssql.sh
-      - build-and-test/build-and-test:
+      - eventuate-gradle-build-and-test/build-and-test:
           name: build-and-test-postgres
           script: ./build-and-test-all-postgres.sh
-      - build-and-test/build-and-test:
+      - eventuate-gradle-build-and-test/build-and-test:
           name: deploy-artifacts
           context:
             - publish
@@ -75,4 +23,3 @@ workflows:
             - build-and-test-mssql
             - build-and-test-postgres
           script: ./deploy-artifacts.sh
-          use_cache: << pipeline.parameters.use_cache >>
