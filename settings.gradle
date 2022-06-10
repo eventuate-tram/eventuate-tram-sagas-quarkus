@@ -1,3 +1,5 @@
+rootProject.name="eventuate-tram-sagas-quarkus"
+
 include 'eventuate-tram-sagas-quarkus-common'
 include 'eventuate-tram-sagas-quarkus-orchestration'
 include 'eventuate-tram-sagas-quarkus-participant'
