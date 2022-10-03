@@ -10,9 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @QuarkusTest
@@ -21,23 +20,23 @@ public class SagaLockManagerIntegrationTest {
   @Inject
   SagaLockManager sagaLockManager;
 
-  private IdGenerator idGenerator = new ApplicationIdGenerator();
+  private final IdGenerator idGenerator = new ApplicationIdGenerator();
 
   String sagaType = "mySagaType";
 
   @Test
   public void shouldClaimLock() {
-    String sagaId = idGenerator.genId(null).toString();
-    String target  = "/target/" + idGenerator.genId(null).toString();
+    String sagaId = idGenerator.genIdAsString();
+    String target  = "/target/" + idGenerator.genIdAsString();
 
     assertTrue(sagaLockManager.claimLock(sagaType, sagaId, target));
   }
 
   @Test
   public void shouldNotClaimLock() {
-    String sagaId1 = idGenerator.genId(null).toString();
-    String sagaId2 = idGenerator.genId(null).toString();
-    String target  = "/target/" + idGenerator.genId(null).toString();
+    String sagaId1 = idGenerator.genIdAsString();
+    String sagaId2 = idGenerator.genIdAsString();
+    String target  = "/target/" + idGenerator.genIdAsString();
 
     assertTrue(sagaLockManager.claimLock(sagaType, sagaId1, target));
     assertFalse(sagaLockManager.claimLock(sagaType, sagaId2, target));
@@ -46,9 +45,9 @@ public class SagaLockManagerIntegrationTest {
 
   @Test
   public void shouldStashMessage() {
-    String sagaId = idGenerator.genId(null).toString();
-    String target  = "/target/" + idGenerator.genId(null).toString();
-    String messageId = idGenerator.genId(null).toString();
+    String sagaId = idGenerator.genIdAsString();
+    String target  = "/target/" + idGenerator.genIdAsString();
+    String messageId = idGenerator.genIdAsString();
 
     Message message = MessageBuilder.withPayload("hello").withHeader(Message.ID, messageId).build();
     sagaLockManager.stashMessage(sagaType, sagaId, target, message);
@@ -56,10 +55,10 @@ public class SagaLockManagerIntegrationTest {
 
   @Test
   public void shouldReleaseLockAndUnstashMessage() {
-    String sagaId1 = idGenerator.genId(null).toString();
-    String sagaId2 = idGenerator.genId(null).toString();
-    String target  = "/target/" + idGenerator.genId(null).toString();
-    String messageId = idGenerator.genId(null).toString();
+    String sagaId1 = idGenerator.genIdAsString();
+    String sagaId2 = idGenerator.genIdAsString();
+    String target  = "/target/" + idGenerator.genIdAsString();
+    String messageId = idGenerator.genIdAsString();
 
     assertTrue(sagaLockManager.claimLock(sagaType, sagaId1, target));
     assertFalse(sagaLockManager.claimLock(sagaType, sagaId2, target));
