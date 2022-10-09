@@ -22,7 +22,7 @@ public class SagaOrchestratorConfiguration {
 
   @Singleton
   public SagaCommandProducer sagaCommandProducer(CommandProducer commandProducer) {
-    return new SagaCommandProducer(commandProducer);
+    return new SagaCommandProducerImpl(commandProducer);
   }
 
   @Singleton
