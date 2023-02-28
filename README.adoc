@@ -1,3 +1,9 @@
+= An Eventuate project
+
+image::https://eventuate.io/i/logo.gif[]
+
+This project is part of http://eventuate.io[Eventuate], which is a microservices collaboration platform.
+
 = Eventuate Tram Sagas for Quarkus
 
 This is the Quarkus version of https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Sagas], which is an http://microservices.io/patterns/data/saga.html[orchestration-based saga] framework for Java microservices that use JDBC/JPA.
@@ -19,10 +25,5 @@ There are the following example applications:
 
 == Getting started
 
-= An Eventuate project
-
-image::https://eventuate.io/i/logo.gif[]
-
-This project is part of http://eventuate.io[Eventuate], which is a microservices collaboration platform.
 
 Please see the https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram-sagas.html#getting-started-tram-sagas[getting started guide].
