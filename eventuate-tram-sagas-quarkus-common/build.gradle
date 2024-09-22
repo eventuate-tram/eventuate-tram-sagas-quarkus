@@ -11,7 +11,6 @@ dependencies {
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation project(":eventuate-tram-sagas-quarkus-in-memory")
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
 test {

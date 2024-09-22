@@ -32,7 +32,6 @@ dependencies {
 
     testImplementation 'io.quarkus:quarkus-junit5'
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
 test {

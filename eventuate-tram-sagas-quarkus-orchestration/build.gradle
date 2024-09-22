@@ -15,7 +15,6 @@ dependencies {
     api "io.quarkus:quarkus-junit5"
     api 'org.mockito:mockito-core:3.7.7'
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
 

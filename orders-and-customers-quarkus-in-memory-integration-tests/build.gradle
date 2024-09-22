@@ -9,7 +9,6 @@ dependencies {
     testImplementation project(":eventuate-tram-sagas-quarkus-in-memory")
     testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-in-memory:$eventuateTramQuarkusVersion"
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
 test {

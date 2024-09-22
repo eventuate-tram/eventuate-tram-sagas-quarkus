@@ -8,5 +8,4 @@ dependencies {
 
     api "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-simple-dsl:$eventuateTramSagasVersion"
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }

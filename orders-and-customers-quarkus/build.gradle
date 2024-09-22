@@ -24,7 +24,6 @@ dependencies {
     api 'io.quarkus:quarkus-junit5'
     api 'javax.persistence:javax.persistence-api:2.2'
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
 
 configurations.api {
