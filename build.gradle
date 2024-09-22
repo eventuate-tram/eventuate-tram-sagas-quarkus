@@ -41,6 +41,13 @@ allprojects {
           testImplementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
       }
     }
+
+    configurations.all {
+        resolutionStrategy {
+            cacheDynamicVersionsFor 0, 'minutes'
+            cacheChangingModulesFor 0, 'seconds'
+        }
+    }    
 }
 
 gradle.projectsEvaluated {
@@ -85,6 +92,3 @@ dockerCompose {
     }
 }
 
-configurations.all {
-    resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
-}
