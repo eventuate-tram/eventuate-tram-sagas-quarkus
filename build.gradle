@@ -84,3 +84,7 @@ dockerCompose {
         useComposeFiles = ["docker-compose-postgres.yml"]
     }
 }
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
+}
