@@ -4,7 +4,6 @@ buildscript {
         maven {
           url "https://plugins.gradle.org/m2/"
         }
-        jcenter()
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }
     dependencies {
@@ -29,15 +28,14 @@ allprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }
 
     if (!project.name.endsWith("-bom")) {
       dependencies {
-          compile 'io.quarkus:quarkus-core'
-          compile 'io.quarkus.arc:arc'
-          compile 'io.quarkus:quarkus-arc-deployment'
+          api 'io.quarkus:quarkus-core'
+          api 'io.quarkus.arc:arc'
+          api 'io.quarkus:quarkus-arc-deployment'
 
           implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
       }

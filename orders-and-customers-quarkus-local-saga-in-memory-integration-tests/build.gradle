@@ -5,9 +5,9 @@ plugins {
 
 
 dependencies {
-    testCompile project(":orders-and-customers-quarkus")
-    testCompile project(":eventuate-tram-sagas-quarkus-in-memory")
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-in-memory:$eventuateTramQuarkusVersion"
+    testImplementation project(":orders-and-customers-quarkus")
+    testImplementation project(":eventuate-tram-sagas-quarkus-in-memory")
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-in-memory:$eventuateTramQuarkusVersion"
 }
 
 test {

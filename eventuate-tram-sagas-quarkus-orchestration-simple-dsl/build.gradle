@@ -4,9 +4,9 @@ plugins {
 
 
 dependencies {
-    compile project(":eventuate-tram-sagas-quarkus-orchestration")
+    api project(":eventuate-tram-sagas-quarkus-orchestration")
 
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-simple-dsl:$eventuateTramSagasVersion"
+    api "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-simple-dsl:$eventuateTramSagasVersion"
 
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }

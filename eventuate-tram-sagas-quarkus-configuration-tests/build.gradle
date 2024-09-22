@@ -8,29 +8,29 @@ plugins {
 apply plugin: SetEventuateDatabasePlugin
 
 dependencies {
-    testCompile project(":eventuate-tram-sagas-quarkus-common")
+    testImplementation project(":eventuate-tram-sagas-quarkus-common")
 
-    testCompile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
-    testCompile "io.eventuate.common:eventuate-common-quarkus-jdbc-test-configuration:$eventuateCommonQuarkusVersion"
+    testImplementation "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+    testImplementation "io.eventuate.common:eventuate-common-quarkus-jdbc-test-configuration:$eventuateCommonQuarkusVersion"
 
-    testCompile project(":eventuate-tram-sagas-quarkus-orchestration-simple-dsl")
-    testCompile project(":eventuate-tram-sagas-quarkus-participant")
-    testCompile project(":eventuate-tram-sagas-quarkus-orchestration")
+    testImplementation project(":eventuate-tram-sagas-quarkus-orchestration-simple-dsl")
+    testImplementation project(":eventuate-tram-sagas-quarkus-participant")
+    testImplementation project(":eventuate-tram-sagas-quarkus-orchestration")
 
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-producer-jdbc:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-jdbc:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-messaging:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-kafka:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
-    testCompile "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-producer-jdbc:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-jdbc:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-messaging:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-consumer-kafka:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-events:$eventuateTramQuarkusVersion"
+    testImplementation "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
 
-    testCompile 'io.quarkus:quarkus-jdbc-mysql'
-    testCompile 'io.quarkus:quarkus-jdbc-mssql'
-    testCompile 'io.quarkus:quarkus-jdbc-postgresql'
-    testCompile 'io.quarkus:quarkus-agroal'
+    testImplementation 'io.quarkus:quarkus-jdbc-mysql'
+    testImplementation 'io.quarkus:quarkus-jdbc-mssql'
+    testImplementation 'io.quarkus:quarkus-jdbc-postgresql'
+    testImplementation 'io.quarkus:quarkus-agroal'
 
-    testCompile 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5'
 
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }

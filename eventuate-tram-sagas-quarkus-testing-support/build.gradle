@@ -5,7 +5,7 @@ plugins {
 
 
 dependencies {
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-testing-support:$eventuateTramSagasVersion"
+    api "io.eventuate.tram.sagas:eventuate-tram-sagas-testing-support:$eventuateTramSagasVersion"
 
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }

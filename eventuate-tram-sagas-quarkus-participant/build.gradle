@@ -5,11 +5,11 @@ plugins {
 
 
 dependencies {
-    compile project(":eventuate-tram-sagas-quarkus-common")
+    api project(":eventuate-tram-sagas-quarkus-common")
 
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-participant:$eventuateTramSagasVersion"
-    compile "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
+    api "io.eventuate.tram.sagas:eventuate-tram-sagas-participant:$eventuateTramSagasVersion"
+    api "io.eventuate.common:eventuate-common-quarkus-jdbc:$eventuateCommonQuarkusVersion"
+    api "io.eventuate.tram.core:eventuate-tram-quarkus-commands:$eventuateTramQuarkusVersion"
 
     implementation enforcedPlatform("io.quarkus:quarkus-bom:${quarkusVersion}")
 }
